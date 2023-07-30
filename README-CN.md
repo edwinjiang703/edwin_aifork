@@ -1,4 +1,4 @@
-# OpenAI 快速入门
+# OpenAI Edwin 快速入门
 
 <p align="center">
     <br> <a href="README.md">English</a> | 中文
