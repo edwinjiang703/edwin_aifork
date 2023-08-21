@@ -25,14 +25,19 @@ class PDFParser:
                 page = Page()
 
                 # Store the original text content
-                raw_text = pdf_page.extract_text()
+                raw_text = pdf_page.extract_text(layout=True)
                 tables = pdf_page.extract_tables()
 
                 # Remove each cell's content from the original text
+                # 需要修改一下，这里的方法可能会把正文里面一些重复的内容替换掉
+
                 for table_data in tables:
                     for row in table_data:
                         for cell in row:
-                            raw_text = raw_text.replace(cell, "", 1)
+                            try:
+                                raw_text = raw_text.replace(cell, "", 1)
+                            except Exception as e:
+                                LOG.error(f"An error occurred during table translation: {e}")
 
                 # Handling text
                 if raw_text:
@@ -44,6 +49,12 @@ class PDFParser:
                     text_content = Content(content_type=ContentType.TEXT, original=cleaned_raw_text)
                     page.add_content(text_content)
                     LOG.debug(f"[raw_text]\n {cleaned_raw_text}")
+
+                if raw_text:
+                    # Remove empty lines and leading/trailing whitespaces
+                    text_content = Content(content_type=ContentType.TEXT, original=raw_text)
+                    page.add_content(text_content)
+                    LOG.debug(f"[raw_text]\n {raw_text}")
 
 
 

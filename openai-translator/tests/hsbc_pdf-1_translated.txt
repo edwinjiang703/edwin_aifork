@@ -1,0 +1,75 @@
+英文：
+
+HSBC     DBaaS       Delivery Content
+
+
+
+Resource Tiering                                                                                 Self-Service Portal
+
+❖ Classify applications based on service levels and importance:                                                              ❖ Define resource pools in the self-service portal         Total of 8 types
+
+                                                                               ❖ Create database instances that meet HSBC Global standards
+
+PLATINUM: RAC with 2 DG                                                                                                    
+
+                                                                               ❖ Implement or expand on previous HSBC Global database service scripts
+
+GOLD:     RAC with 1 DG                                                                                                    
+
+                                                                                 including single instance to RAC conversion, DG setup, RAC One Node
+
+SILVER:   RAC one node with 1 DG                                                                                            
+
+                                                                               creation, PDB plug/unplug, and other operations.
+
+Resource Pool Definition                                                                           Resource Pool Capabilities
+
+❖ Build different resource pools for different purposes                                                                                               
+
+                                                                               ❖ Enable rapid provisioning of resources, significantly reducing delivery process (UAT environment)
+
+ZHJ, IFC, NHC production resource pools                          OEM   DBaaS platform                                                                 
+
+                                                                               ❖ Dynamic resource adjustment, enabling online scaling
+
+NHC UAT resource pool                                                                                                      
+
+                                                             Service Catalog                        ❖ Utilize the convenience of PDB migration to and from different resource pools
+
+❖ Divide applications into AL32UTF8 and ZHS16GBK                                                                                                       
+
+                                                                                 to achieve rapid deployment
+
+❖ Define the database resource requirements and performance capabilities for different application levels                 Self-Service Portal                                                                         
+
+                                                                               ❖ Monitor Exadata hardware and DBaaS resource pools using OEM
+
+Requirements: For phase one, temporarily define one pattern                                                                                                             
+
+                                                            Resource Pool Functionality                           and receive alerts; customize dashboard for quick information understanding
+
+           CPUs: 2                                                                                                                                           
+
+           SGA: 12G ；PGA: 4G ； Sessions: 900                                                                                           
+
+Disaster Recovery Planning                                                                                 Service Expansion
+
+❖ RAC and RAC One Node                                                                                                         
+
+                                                                               ❖ Enable coexistence of PDBs with different character sets under one CDB
+
+  Primary: ZHJ    -> Standby: IFC, NHC    Two-site Three-center                                                                                   
+
+                                                                                       Role Base Mode
+
+  Primary: ZHJ    -> Standby: IFC                                                                      Application Isolation Mode: preferred and available
+
+  Primary: ZHJ    -> Standby: NHC                                                                      Standby Database Read-Only Mode
+
+  Primary: IFC    -> Standby: NHC                                                                    ❖ Login via LDAP
+
+  Primary: IFC    -> Standby: ZHJ                                                                                                    
+
+Copyright © 2021 Oracle and/or its affiliates.
+
+1

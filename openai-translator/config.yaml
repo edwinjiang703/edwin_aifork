@@ -1,11 +1,11 @@
 OpenAIModel:
   model: "gpt-3.5-turbo"
-  api_key: "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"
+  api_key: "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"
 
 GLMModel:
   model_url: "your_chatglm_model_url"
   timeout: 300
 
 common:
-  book: "hsbc_pdf-1.pdf"
+  book: "tests/hsbc_pdf-all.pdf"
   file_format: "markdown"

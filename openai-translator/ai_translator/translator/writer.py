@@ -3,6 +3,7 @@ from reportlab.lib import colors, pagesizes, units
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 )
@@ -24,7 +25,8 @@ class Writer:
 
     def _save_translated_book_pdf(self, book: Book, output_file_path: str = None):
         if output_file_path is None:
-            output_file_path = book.pdf_file_path.replace('.pdf', f'_translated.pdf')
+            #output_file_path = book.pdf_file_path.replace('.pdf', f'_translated.pdf')
+            output_file_path = book.pdf_file_path.replace('.pdf', f'_translated.txt')
 
         LOG.info(f"pdf_file_path: {book.pdf_file_path}")
         LOG.info(f"开始翻译: {output_file_path}")
@@ -37,8 +39,9 @@ class Writer:
         simsun_style = ParagraphStyle('SimSun', fontName='SimSun', fontSize=12, leading=14)
 
         # Create a PDF document
-        doc = SimpleDocTemplate(output_file_path, pagesize=pagesizes.letter)
-        styles = getSampleStyleSheet()
+        # doc = SimpleDocTemplate(output_file_path, pagesize=pagesizes.letter)
+        # styles = getSampleStyleSheet()
+        # normal_style = styles['Normal']
         story = []
 
         # Iterate over the pages and contents
@@ -48,9 +51,14 @@ class Writer:
                     if content.content_type == ContentType.TEXT:
                         # Add translated text to the PDF
 
+                        # if str(content.translation.split('\n')).strip() != '':
+                        #     text = str(content.translation.split('\n'))
+                        #     para = Paragraph(text, normal_style)
+                        #     story.append(para)
+                        
                         text = content.translation
-                        para = Paragraph(text, simsun_style)
-                        story.append(para)
+                        #para = Paragraph(text, normal_style)
+                        story.append(text)
 
                     #elif content.content_type == ContentType.TABLE:
                         # Add table to the PDF
@@ -70,11 +78,32 @@ class Writer:
                         # pdf_table.setStyle(table_style)
                         # story.append(pdf_table)
             # Add a page break after each page except the last one
-            if page != book.pages[-1]:
-                story.append(PageBreak())
+        #     if page != book.pages[-1]:
+        #         story.append(PageBreak())
 
-        # Save the translated book as a new PDF file
-        doc.build(story)
+        # # Save the translated book as a new PDF file
+        # doc.build([Spacer(1, 0.5*1)]+story)
+
+        with open(output_file_path, 'w', encoding='utf-8') as file:
+            for line in story:
+                file.write(line + '\n')
+        
+        with open(output_file_path, 'r', encoding='utf-8') as file:
+            text_content = file.read()
+        print(output_file_path)
+
+        doc = SimpleDocTemplate('tests/hsbc_pdf-1_translated.pdf', pagesize=letter)
+
+        # 定义样式
+        styles = getSampleStyleSheet()
+        normal_style = styles['Normal']
+
+        # 将文本内容拆分成段落
+        paragraphs = [Paragraph(p, normal_style) for p in text_content.split('\n') if p.strip() != '']
+
+        # 添加段落和间距到PDF文档
+        doc.build([Spacer(1, 0.5*1)] + paragraphs)
+
         LOG.info(f"翻译完成: {output_file_path}")
 
     def _save_translated_book_markdown(self, book: Book, output_file_path: str = None):

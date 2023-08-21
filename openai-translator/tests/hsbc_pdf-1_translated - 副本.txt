@@ -1,0 +1,44 @@
+英文:
+
+HSBC     DBaaS       Delivery Content
+
+
+Resource Classification                                                                            Self-Service Portal
+                                                                                                 
+❖Classify applications based on service level and importance:                                                              ❖ Define resource pools in self-service portal         8 types available
+                                                                                                ❖ Create database instances that comply with HSBC Global standards
+     PLATINUM: RAC with 2 DG                                                                                                    
+                                                                                                ❖ Implement or expand previous HSBC Global database service scripts
+     GOLD:     RAC with 1 DG                                                                                                    
+                                                                                                     including single instance to RAC conversion, DG setup, RAC One Node 
+     SILVER:   RAC one node with 1 DG                                                                                         
+                                                                                                creation, PDB plug/unplug operations.
+Resource Pool Definition                                                                               Resource Pool Capabilities
+❖Build different resource pools for different purposes                                                                                                       
+                                                                                                ❖Enable rapid resource provisioning, significantly shorten delivery process (UAT environment) 
+     ZHJ, IFC, NHC Production Resource Pool                             OEM DBaaS Platform                                                              
+                                                                                                ❖Dynamic resource adjustment, realize online scaling            
+     NHC UAT Resource Pool                                                                                                                
+                                                          Service Catalog                                  ❖Leverage the convenience of PDB migration in realizing fast deployment            
+❖Differentiate AL32UTF8 and ZHS16GBK based on application requirements                                                                                               
+                                                                                                between different resource pools                                             
+❖Define database capabilities and resource performance requirements for different levels of applications                                   Self-Service Portal                                                                    
+                                                                                                ❖Monitor Exadata hardware and DBaaS resource pool through OEM
+Requirements: For Phase 1, temporarily define one pattern                                                                                           
+                                                          Resource Pool Functions                                  and receive alarms; customize dashboards, quickly understand information           
+     CPUs: 2                                                                                                                                     
+     SGA: 12G; PGA: 4G; Sessions: 900                                                              Service Expansion 
+Disaster Recovery Planning                                                                             ❖Support coexistence of PDBs with different character sets under one CDB            
+❖RAC and RAC one node:                                                                                                       
+                                                                                                ❖Expand the existing Global script's functionality related to DB Service
+      Primary: ZHJ    -> Standby: IFC, NHC  (two centers in two locations)                                                                                         
+                                                                                                     Role-based mode                             
+      Primary: ZHJ    -> Standby: IFC                                                                                                                      
+                                                                                                     Application isolation mode: preferred and available                       
+      Primary: ZHJ    -> Standby: NHC                                                                                                                 
+                                                                                                     Standby read-only mode                             
+      Primary: IFC    -> Standby: NHC                                                                                                                     
+                                                                                                                                                                                                                    ❖Login with LDAP                                                                                                                     
+      Primary: IFC    -> Standby: ZHJ                                                                                                           
+              Copyright © 2021 Oracle and/or its affiliates.                                                                           
+1
